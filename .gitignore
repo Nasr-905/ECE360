@@ -9,4 +9,6 @@
 *.bcf
 *.bbl
 *.aux
-*.bib
+*.ptc
+*.xml
+*.blg
