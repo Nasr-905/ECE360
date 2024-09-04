@@ -1,0 +1,3 @@
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{\numberline {Lecture I}Diodes - Chapter 4 of the Textbook}{4}{chapter.1}%
+\contentsfinish 
