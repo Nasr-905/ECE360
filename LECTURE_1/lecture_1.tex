@@ -1,6 +1,7 @@
 \chapterimage{./Images/head2.jpg} % Chapter heading image
 \chapter{Diodes - Chapter 4 of the Textbook}
 
+
 \begin{definition}
     [Diode]
     \begin{itemize}
@@ -22,7 +23,7 @@
     \begin{figure}[H]
         \centering
         \includegraphics[scale=0.5]{./LECTURE_1/vi_diode.png}
-        \caption{Cathode V-I Characteristics}
+        \caption{True Diode V-I Characteristics}
     \end{figure}
 \end{definition}
 
@@ -39,21 +40,21 @@
         \centering
         \begin{tikzpicture}
             \begin{axis}[
-                axis lines = left,
-                xlabel = $V$,
-                ylabel = $I$,
-                xmin = -1,
-                xmax = 1,
-                ymin = -1,
-                ymax = 1,
-            ]
-            %Below the red parabola is defined
-            \addplot [
-                domain=-1:1, 
-                samples=100, 
-                color=red,
-            ]
-            {x < 0 ? 0 : 10};
+                    axis lines = left,
+                    xlabel = $V$,
+                    ylabel = $I$,
+                    xmin = -1,
+                    xmax = 1,
+                    ymin = -1,
+                    ymax = 1,
+                ]
+                %Below the red parabola is defined
+                \addplot [
+                    domain=-1:1,
+                    samples=100,
+                    color=red,
+                ]
+                {x < 0 ? 0 : 10};
             \end{axis}
         \end{tikzpicture}
         \caption{Ideal Diode V-I Characteristics}
@@ -70,17 +71,45 @@
     % circuit diagram with ideal diode
     \begin{figure}[H]
         \centering
-        \begin{circuitikz}
-            \draw
-            (0,0) to[battery1, l=$V$] (0,4)
-            (0,4) to[diode, l=$D$] (4,4)
-            (4,4) to[R, l=$R$] (4,0)
-            (4,0) -- (0,0);
-        \end{circuitikz}
-        \caption{Simple Circuit with Diode}
+        \begin{minipage}{0.3\textwidth}
+            \centering
+            \begin{circuitikz}
+                \draw
+                (0,0) to[battery1, l=$V$] (0,4)
+                (0,4) to[diode, l=$D$] (4,4)
+                (4,4) to[R, l=$R$] (4,0)
+                (4,0) -- (0,0);
+            \end{circuitikz}
+            \caption{Ideal Diode}
+        \end{minipage}
+        \hfill
+        \begin{minipage}{0.3\textwidth}
+            \centering
+            \begin{circuitikz}
+                \draw
+                (0,0) to[battery1, l=$V$] (0,4)
+                (0,4) to[short, -o] (1,4)
+                (4,4) to[short, -o] (3,4)
+                (4,4) to[R, l=$R$] (4,0)
+                (4,0) -- (0,0);
+            \end{circuitikz}
+            \caption{Forward Biased Diode}
+        \end{minipage}
+        \hfill
+        \begin{minipage}{0.3\textwidth}
+            \centering
+            \begin{circuitikz}
+                \draw
+                (0,0) to[battery1, l=$V$] (0,4)
+                (0,4) -- (4,4)
+                (4,4) to[R, l=$R$] (4,0)
+                (4,0) -- (0,0);
+            \end{circuitikz}
+            \caption{Reverse Biased Diode}
+        \end{minipage}
     \end{figure}
-    
 \end{corollary}
+
 
 \begin{definition}
     [Piecewise Linear Model]
@@ -90,4 +119,29 @@
         \item $I_s$ is the current when the diode is reverse biased
     \end{itemize}
     % tikz code for piecewise linear diode V-I characteristics
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[
+                    axis lines = left,
+                    xlabel = $V$,
+                    ylabel = $I$,
+                    xmin = -1,
+                    xmax = 1,
+                    ymin = -1,
+                    ymax = 1,
+                ]
+                %Below the red parabola is defined
+                \addplot [
+                    domain=-1:1,
+                    samples=100,
+                    color=red,
+                ]
+                {x < 0 ? 0 : x};
+            \end{axis}
+            \draw[dotted] (3.5,0) -- (3.5,2.8) node[right] {$V_f$};
+        \end{tikzpicture}
+        \caption{Piecewise Linear Diode V-I Characteristics}
+    \end{figure}
+
 \end{definition}
